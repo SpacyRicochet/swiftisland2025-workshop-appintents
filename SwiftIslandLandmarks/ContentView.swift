@@ -1,61 +1,56 @@
-//
-//  ContentView.swift
-//  SwiftIslandLandmarks
-//
-//  Created by Bruno Scheele on 27/07/2025.
-//
-
 import SwiftUI
 import SwiftData
 
 struct ContentView: View {
-    @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
-
-    var body: some View {
-        NavigationSplitView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                    } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
-                    }
-                }
-                .onDelete(perform: deleteItems)
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
-                }
-            }
-        } detail: {
-            Text("Select an item")
-        }
-    }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(timestamp: Date())
-            modelContext.insert(newItem)
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                modelContext.delete(items[index])
-            }
-        }
-    }
+	@Environment(\.modelContext) private var modelContext
+	@Query private var landmarks: [Landmark]
+	
+	var body: some View {
+		NavigationSplitView {
+			List {
+				ForEach(landmarks) { landmark in
+					NavigationLink {
+						LandmarkDetailView(landmark: landmark)
+					} label: {
+						Text(landmark.name)
+					}
+				}
+				.onDelete(perform: deleteItems)
+			}
+			.toolbar {
+				ToolbarItem(placement: .navigationBarTrailing) {
+					EditButton()
+				}
+				ToolbarItem {
+					Button(action: addItem) {
+						Label("Add Item", systemImage: "plus")
+					}
+				}
+			}
+		} detail: {
+			NavigationStack {
+				Text("Select an item")
+			}
+		}
+	}
+	
+	private func addItem() {
+		withAnimation {
+			let newItem = Landmark.texel()
+			modelContext.insert(newItem)
+		}
+	}
+	
+	private func deleteItems(offsets: IndexSet) {
+		withAnimation {
+			for index in offsets {
+				modelContext.delete(landmarks[index])
+			}
+		}
+	}
 }
 
 #Preview {
-    ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
+	ContentView()
+		.modelContainer(for: Landmark.self, inMemory: true)
 }

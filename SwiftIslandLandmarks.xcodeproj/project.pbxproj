@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		2366E4542E36C4E500AD1873 /* SwiftIslandLandmarks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftIslandLandmarks.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		23356A192E3178EA00E86393 /* SwiftIslandLandmarks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftIslandLandmarks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		2366E4562E36C4E500AD1873 /* SwiftIslandLandmarks */ = {
+		23356A1B2E3178EA00E86393 /* SwiftIslandLandmarks */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = SwiftIslandLandmarks;
 			sourceTree = "<group>";
@@ -19,7 +19,7 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		2366E4512E36C4E500AD1873 /* Frameworks */ = {
+		23356A162E3178EA00E86393 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -29,18 +29,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2366E44B2E36C4E500AD1873 = {
+		23356A102E3178EA00E86393 = {
 			isa = PBXGroup;
 			children = (
-				2366E4562E36C4E500AD1873 /* SwiftIslandLandmarks */,
-				2366E4552E36C4E500AD1873 /* Products */,
+				23356A1B2E3178EA00E86393 /* SwiftIslandLandmarks */,
+				23356A1A2E3178EA00E86393 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		2366E4552E36C4E500AD1873 /* Products */ = {
+		23356A1A2E3178EA00E86393 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2366E4542E36C4E500AD1873 /* SwiftIslandLandmarks.app */,
+				23356A192E3178EA00E86393 /* SwiftIslandLandmarks.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -48,64 +48,64 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2366E4532E36C4E500AD1873 /* SwiftIslandLandmarks */ = {
+		23356A182E3178EA00E86393 /* SwiftIslandLandmarks */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2366E4612E36C4E600AD1873 /* Build configuration list for PBXNativeTarget "SwiftIslandLandmarks" */;
+			buildConfigurationList = 23356A262E3178EA00E86393 /* Build configuration list for PBXNativeTarget "SwiftIslandLandmarks" */;
 			buildPhases = (
-				2366E4502E36C4E500AD1873 /* Sources */,
-				2366E4512E36C4E500AD1873 /* Frameworks */,
-				2366E4522E36C4E500AD1873 /* Resources */,
+				23356A152E3178EA00E86393 /* Sources */,
+				23356A162E3178EA00E86393 /* Frameworks */,
+				23356A172E3178EA00E86393 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				2366E4562E36C4E500AD1873 /* SwiftIslandLandmarks */,
+				23356A1B2E3178EA00E86393 /* SwiftIslandLandmarks */,
 			);
 			name = SwiftIslandLandmarks;
 			packageProductDependencies = (
 			);
 			productName = SwiftIslandLandmarks;
-			productReference = 2366E4542E36C4E500AD1873 /* SwiftIslandLandmarks.app */;
+			productReference = 23356A192E3178EA00E86393 /* SwiftIslandLandmarks.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		2366E44C2E36C4E500AD1873 /* Project object */ = {
+		23356A112E3178EA00E86393 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 2600;
 				LastUpgradeCheck = 2600;
 				TargetAttributes = {
-					2366E4532E36C4E500AD1873 = {
+					23356A182E3178EA00E86393 = {
 						CreatedOnToolsVersion = 26.0;
 					};
 				};
 			};
-			buildConfigurationList = 2366E44F2E36C4E500AD1873 /* Build configuration list for PBXProject "SwiftIslandLandmarks" */;
+			buildConfigurationList = 23356A142E3178EA00E86393 /* Build configuration list for PBXProject "SwiftIslandLandmarks" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = 2366E44B2E36C4E500AD1873;
+			mainGroup = 23356A102E3178EA00E86393;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = 2366E4552E36C4E500AD1873 /* Products */;
+			productRefGroup = 23356A1A2E3178EA00E86393 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2366E4532E36C4E500AD1873 /* SwiftIslandLandmarks */,
+				23356A182E3178EA00E86393 /* SwiftIslandLandmarks */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		2366E4522E36C4E500AD1873 /* Resources */ = {
+		23356A172E3178EA00E86393 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -115,7 +115,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		2366E4502E36C4E500AD1873 /* Sources */ = {
+		23356A152E3178EA00E86393 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -125,7 +125,7 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		2366E45F2E36C4E600AD1873 /* Debug */ = {
+		23356A242E3178EA00E86393 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -189,7 +189,7 @@
 			};
 			name = Debug;
 		};
-		2366E4602E36C4E600AD1873 /* Release */ = {
+		23356A252E3178EA00E86393 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -246,7 +246,7 @@
 			};
 			name = Release;
 		};
-		2366E4622E36C4E600AD1873 /* Debug */ = {
+		23356A272E3178EA00E86393 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -278,7 +278,7 @@
 			};
 			name = Debug;
 		};
-		2366E4632E36C4E600AD1873 /* Release */ = {
+		23356A282E3178EA00E86393 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -313,25 +313,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2366E44F2E36C4E500AD1873 /* Build configuration list for PBXProject "SwiftIslandLandmarks" */ = {
+		23356A142E3178EA00E86393 /* Build configuration list for PBXProject "SwiftIslandLandmarks" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2366E45F2E36C4E600AD1873 /* Debug */,
-				2366E4602E36C4E600AD1873 /* Release */,
+				23356A242E3178EA00E86393 /* Debug */,
+				23356A252E3178EA00E86393 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2366E4612E36C4E600AD1873 /* Build configuration list for PBXNativeTarget "SwiftIslandLandmarks" */ = {
+		23356A262E3178EA00E86393 /* Build configuration list for PBXNativeTarget "SwiftIslandLandmarks" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2366E4622E36C4E600AD1873 /* Debug */,
-				2366E4632E36C4E600AD1873 /* Release */,
+				23356A272E3178EA00E86393 /* Debug */,
+				23356A282E3178EA00E86393 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 2366E44C2E36C4E500AD1873 /* Project object */;
+	rootObject = 23356A112E3178EA00E86393 /* Project object */;
 }
