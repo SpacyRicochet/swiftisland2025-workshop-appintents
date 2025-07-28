@@ -3,6 +3,7 @@ import SwiftData
 
 @Model
 final class Landmark {
+	@Attribute(.unique)
 	var name: String
 	var latitude: Double
 	var longitude: Double

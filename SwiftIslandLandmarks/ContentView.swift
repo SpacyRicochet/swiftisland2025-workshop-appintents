@@ -4,27 +4,50 @@ import SwiftData
 struct ContentView: View {
 	@Environment(\.modelContext) private var modelContext
 	@Query private var landmarks: [Landmark]
+	@Query private var collections: [LandmarkCollection]
 	
 	var body: some View {
 		NavigationSplitView {
 			List {
-				ForEach(landmarks) { landmark in
-					NavigationLink {
-						LandmarkDetailView(landmark: landmark)
-					} label: {
-						Text(landmark.name)
+				Section {
+					ForEach(landmarks) { landmark in
+						NavigationLink {
+							NavigationStack {
+								LandmarkDetailView(landmark: landmark)
+							}
+						} label: {
+							Text(landmark.name)
+						}
 					}
-				}
-				.onDelete(perform: deleteItems)
-			}
-			.toolbar {
-				ToolbarItem(placement: .navigationBarTrailing) {
-					EditButton()
-				}
-				ToolbarItem {
+					.onDelete(perform: deleteItems)
 					Button(action: addItem) {
-						Label("Add Item", systemImage: "plus")
+						Label("Add Landmark", systemImage: "plus")
 					}
+				} header: {
+					Label("Landmarks", systemImage: "photo")
+				}
+				
+				Section {
+					ForEach(collections) { collection in
+						NavigationLink {
+							NavigationStack {
+								LandmarkCollectionDetailView(collection: collection)
+							}
+						} label: {
+							Text(collection.name)
+						}
+					}
+					Button(action: addItem) {
+						Label("Add Collection", systemImage: "plus")
+					}
+				} header: {
+					Label("Collections", systemImage: "photo.stack")
+				}
+			}
+			.listStyle(.insetGrouped)
+			.toolbar {
+				ToolbarItem(placement: .topBarTrailing) {
+					EditButton()
 				}
 			}
 		} detail: {
@@ -52,5 +75,5 @@ struct ContentView: View {
 
 #Preview {
 	ContentView()
-		.modelContainer(for: Landmark.self, inMemory: true)
+		.modelContainer(try! ModelContainer.sample())
 }

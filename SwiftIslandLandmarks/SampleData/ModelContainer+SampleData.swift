@@ -5,9 +5,7 @@ extension ModelContainer {
 		let schema = Schema.allEntities
 		let modelConfiguration = ModelConfiguration(isStoredInMemoryOnly: true)
 		let container = try ModelContainer(for: schema, configurations: modelConfiguration)
-		Task { @MainActor in
-			container.mainContext.insertSampleData()
-		}
+		container.mainContext.insertSampleData()
 		return container
 	}
 }
