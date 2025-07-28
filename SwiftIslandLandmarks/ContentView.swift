@@ -6,6 +6,8 @@ struct ContentView: View {
 	@Query private var landmarks: [Landmark]
 	@Query private var collections: [LandmarkCollection]
 	
+	@State private var isEditorPresented = false
+	
 	var body: some View {
 		NavigationSplitView {
 			List {
@@ -23,6 +25,7 @@ struct ContentView: View {
 					Button(action: addItem) {
 						Label("Add Landmark", systemImage: "plus")
 					}
+					.disabled(isEditorPresented)
 				} header: {
 					Label("Landmarks", systemImage: "photo")
 				}
@@ -50,6 +53,9 @@ struct ContentView: View {
 					EditButton()
 				}
 			}
+			.sheet(isPresented: $isEditorPresented) {
+				EditLandmarkForm(landmark: nil, deleteHandler: nil)
+			}
 		} detail: {
 			NavigationStack {
 				Text("Select an item")
@@ -58,10 +64,11 @@ struct ContentView: View {
 	}
 	
 	private func addItem() {
-		withAnimation {
-			let newItem = Landmark.texel
-			modelContext.insert(newItem)
-		}
+		isEditorPresented.toggle()
+//		withAnimation {
+//			let newItem = Landmark.texel
+//			modelContext.insert(newItem)
+//		}
 	}
 	
 	private func deleteItems(offsets: IndexSet) {

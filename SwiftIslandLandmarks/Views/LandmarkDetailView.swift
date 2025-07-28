@@ -2,6 +2,9 @@ import SwiftUI
 import SwiftData
 
 struct LandmarkDetailView: View {
+	@Environment(\.dismiss) var dismiss
+	@State private var isEditLandmarkShowing = false
+	
 	let landmark: Landmark
 	
 	var body: some View {
@@ -9,13 +12,6 @@ struct LandmarkDetailView: View {
 			HStack {
 				Text(landmark.name)
 					.font(.title)
-					.frame(maxWidth: .infinity, alignment: .leading)
-				Button {
-					landmark.isFavorite.toggle()
-				} label: {
-					Image(systemName: landmark.isFavorite ? "heart.fill" : "heart")
-						.foregroundStyle(.red)
-				}
 			}
 			if let lastVisited = landmark.lastVisited {
 				VStack(spacing: 4) {
@@ -29,6 +25,29 @@ struct LandmarkDetailView: View {
 					Text("Add a visit")
 				}
 			}
+		}
+		.navigationTitle(landmark.name)
+		.toolbar {
+			ToolbarItem(placement: .secondaryAction) {
+				Button(
+					landmark.isFavorite ? "Add to favorites" : "Remove from favorites",
+					systemImage: landmark.isFavorite ? "heart.fill" : "heart") {
+						landmark.isFavorite.toggle()
+					}
+			}
+			ToolbarItem(placement: .topBarTrailing) {
+				Button("Edit") {
+					isEditLandmarkShowing.toggle()
+				}
+			}
+		}
+		.sheet(isPresented: $isEditLandmarkShowing) {
+			EditLandmarkForm(
+				landmark: landmark,
+				deleteHandler: {
+					dismiss()
+				}
+			)
 		}
 	}
 }
