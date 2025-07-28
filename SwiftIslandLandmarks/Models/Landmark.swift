@@ -4,14 +4,16 @@ import SwiftData
 @Model
 final class Landmark {
 	var name: String
-	var coordinates: Coordinates
+	var latitude: Double
+	var longitude: Double
 	var lastVisited: Date?
 	var isFavorite: Bool
 	
-	init(name: String, coordinates: Coordinates, lastVisited: Date?, isFavorite: Bool) {
+	init(name: String, latitude: Double, longitude: Double, isFavorite: Bool, lastVisited: Date?) {
 		self.name = name
-		self.coordinates = coordinates
-		self.lastVisited = lastVisited
+		self.latitude = latitude
+		self.longitude = longitude
 		self.isFavorite = isFavorite
+		self.lastVisited = lastVisited
 	}
 }

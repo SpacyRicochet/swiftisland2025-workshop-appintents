@@ -36,7 +36,7 @@ struct ContentView: View {
 	
 	private func addItem() {
 		withAnimation {
-			let newItem = Landmark.texel()
+			let newItem = Landmark.texel
 			modelContext.insert(newItem)
 		}
 	}
