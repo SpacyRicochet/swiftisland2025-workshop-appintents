@@ -30,10 +30,11 @@ struct LandmarkDetailView: View {
 		.toolbar {
 			ToolbarItem(placement: .secondaryAction) {
 				Button(
-					landmark.isFavorite ? "Add to favorites" : "Remove from favorites",
-					systemImage: landmark.isFavorite ? "heart.fill" : "heart") {
+					landmark.isFavorite ? "Remove from favorites" : "Add to favorites",
+					systemImage: landmark.isFavorite ? "heart.slash" : "heart") {
 						landmark.isFavorite.toggle()
 					}
+					.tint(.red)
 			}
 			ToolbarItem(placement: .topBarTrailing) {
 				Button("Edit") {

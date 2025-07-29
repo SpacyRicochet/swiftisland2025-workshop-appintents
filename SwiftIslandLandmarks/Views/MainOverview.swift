@@ -31,6 +31,14 @@ struct MainOverview: View {
 			}
 			
 			Section {
+				NavigationLink {
+					FavoritesView()
+				} label: {
+					Label("Favorites", systemImage: "heart.fill")
+				}
+			}
+			
+			Section {
 				ForEach(collections) { collection in
 					NavigationLink {
 						NavigationStack {
