@@ -8,21 +8,30 @@ struct LandmarkDetailView: View {
 	let landmark: Landmark
 	
 	var body: some View {
-		VStack {
-			HStack {
-				Text(landmark.name)
-					.font(.title)
-			}
-			if let lastVisited = landmark.lastVisited {
-				VStack(spacing: 4) {
-					Text("Last visited")
-					Text(lastVisited.formatted(date: .abbreviated, time: .omitted))
+		List {
+			Section("Visits") {
+				if let lastVisited = landmark.lastVisited {
+					VStack(spacing: 4) {
+						Text("Last visited")
+						Text(lastVisited.formatted(date: .abbreviated, time: .omitted))
+					}
+				} else {
+					Button {
+						landmark.lastVisited = Date()
+					} label: {
+						Text("Add a visit")
+					}
 				}
-			} else {
-				Button {
-					landmark.lastVisited = Date()
-				} label: {
-					Text("Add a visit")
+			}
+			
+			if let collection = landmark.collection {
+				Section("In collection") {
+					Text(collection.name)
+						.swipeActions(edge: .trailing) {
+							Button("Remove", role: .destructive) {
+								landmark.collection = nil
+							}
+						}
 				}
 			}
 		}

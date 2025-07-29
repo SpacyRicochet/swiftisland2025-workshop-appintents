@@ -10,6 +10,9 @@ final class Landmark {
 	var lastVisited: Date?
 	var isFavorite: Bool
 	
+	@Relationship(deleteRule: .nullify, inverse: \LandmarkCollection.landmarks)
+	var collection: LandmarkCollection?
+	
 	init(name: String, latitude: Double, longitude: Double, isFavorite: Bool, lastVisited: Date?) {
 		self.name = name
 		self.latitude = latitude
