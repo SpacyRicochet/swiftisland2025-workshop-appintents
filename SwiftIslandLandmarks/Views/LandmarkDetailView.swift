@@ -12,15 +12,13 @@ struct LandmarkDetailView: View {
 			Section("Visits") {
 				if let lastVisited = landmark.lastVisited {
 					VStack(spacing: 4) {
-						Text("Last visited")
-						Text(lastVisited.formatted(date: .abbreviated, time: .omitted))
+						Text("Last visited: \(lastVisited.formatted(date: .abbreviated, time: .omitted))")
 					}
-				} else {
-					Button {
-						landmark.lastVisited = Date()
-					} label: {
-						Text("Add a visit")
-					}
+				}
+				Button {
+					landmark.visits.append(Visit(timestamp: Date(), landmark: landmark))
+				} label: {
+					Text("Add a visit")
 				}
 			}
 			

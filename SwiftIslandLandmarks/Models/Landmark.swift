@@ -7,17 +7,35 @@ final class Landmark {
 	var name: String
 	var latitude: Double
 	var longitude: Double
-	var lastVisited: Date?
 	var isFavorite: Bool
 	
 	@Relationship(deleteRule: .nullify, inverse: \LandmarkCollection.landmarks)
 	var collection: LandmarkCollection?
 	
-	init(name: String, latitude: Double, longitude: Double, isFavorite: Bool, lastVisited: Date?) {
+	@Relationship(deleteRule: .cascade, inverse: \Visit.landmark)
+	var visits: [Visit]
+	
+	init(
+		name: String,
+		latitude: Double,
+		longitude: Double,
+		isFavorite: Bool,
+		lastVisited: Date?,
+		visits: [Visit] = []
+	) {
 		self.name = name
 		self.latitude = latitude
 		self.longitude = longitude
 		self.isFavorite = isFavorite
-		self.lastVisited = lastVisited
+		self.visits = visits
+	}
+}
+
+extension Landmark {
+	var lastVisited: Date? {
+		guard !visits.isEmpty else {
+			return nil
+		}
+		return visits.sorted(using: SortDescriptor(\.timestamp, order: .reverse)).first?.timestamp
 	}
 }
