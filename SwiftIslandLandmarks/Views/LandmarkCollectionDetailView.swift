@@ -20,15 +20,13 @@ struct LandmarkCollectionDetailView: View {
 		.navigationBarTitle(collection.name)
 		.toolbar {
 			ToolbarItem(placement: .primaryAction) {
-				Button("Add landmark") {
+				Button("Edit landmarks") {
 					isAddLandmarkPresented.toggle()
 				}
 			}
 		}
 		.sheet(isPresented: $isAddLandmarkPresented) {
-			SelectLandmarkView(collection: collection) {
-				collection.landmarks.append($0)
-			}
+			SelectLandmarksView(collection: collection)
 		}
 	}
 }
