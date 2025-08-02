@@ -9,8 +9,8 @@ final class Landmark {
 	var longitude: Double
 	var isFavorite: Bool
 	
-	@Relationship(deleteRule: .nullify, inverse: \LandmarkCollection.landmarks)
-	var collection: LandmarkCollection?
+	@Relationship(deleteRule: .nullify)
+	var collections: [LandmarkCollection]
 	
 	@Relationship(deleteRule: .cascade, inverse: \Visit.landmark)
 	var visits: [Visit]
@@ -21,12 +21,14 @@ final class Landmark {
 		longitude: Double,
 		isFavorite: Bool,
 		lastVisited: Date?,
+		collections: [LandmarkCollection] = [],
 		visits: [Visit] = []
 	) {
 		self.name = name
 		self.latitude = latitude
 		self.longitude = longitude
 		self.isFavorite = isFavorite
+		self.collections = collections
 		self.visits = visits
 	}
 }

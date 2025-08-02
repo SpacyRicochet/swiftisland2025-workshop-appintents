@@ -3,7 +3,9 @@ import SwiftData
 
 struct LandmarkDetailView: View {
 	@Environment(\.dismiss) var dismiss
+	
 	@State private var isEditLandmarkShowing = false
+	@State private var isSelectCollectionsShowing = false
 	
 	let landmark: Landmark
 	
@@ -22,14 +24,22 @@ struct LandmarkDetailView: View {
 				}
 			}
 			
-			if let collection = landmark.collection {
-				Section("In collection") {
+			Section {
+				ForEach(landmark.collections) { collection in
 					Text(collection.name)
 						.swipeActions(edge: .trailing) {
 							Button("Remove", role: .destructive) {
-								landmark.collection = nil
+								landmark.collections.removeAll { $0.id == collection.id }
 							}
 						}
+				}
+			} header: {
+				HStack {
+					Text("In collections")
+						.frame(maxWidth: .infinity, alignment: .leading)
+					Button("Add to collection", systemImage: "plus") {
+						isSelectCollectionsShowing.toggle()
+					}
 				}
 			}
 		}
@@ -56,6 +66,9 @@ struct LandmarkDetailView: View {
 					dismiss()
 				}
 			)
+		}
+		.sheet(isPresented: $isSelectCollectionsShowing) {
+			SelectCollectionsView(landmark: landmark)
 		}
 	}
 }

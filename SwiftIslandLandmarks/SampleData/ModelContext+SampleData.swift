@@ -5,6 +5,9 @@ extension ModelContext {
 		for landmark in Landmark.initialList {
 			insert(landmark)
 		}
-		insert(LandmarkCollection.swiftIsland)
+		
+		for collection in LandmarkCollection.initialList {
+			insert(collection)
+		}
 	}
 }

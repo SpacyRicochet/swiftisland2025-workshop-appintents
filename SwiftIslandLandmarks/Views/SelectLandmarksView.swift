@@ -18,11 +18,11 @@ struct SelectLandmarksView: View {
 					List {
 						ForEach(landmarks) { landmark in
 							Button {
-									if landmark.collection != nil {
-										landmark.collection = nil
-									} else {
-										landmark.collection = collection
-									}
+								if collection.landmarks.contains(landmark) {
+									collection.landmarks.removeAll { $0.id == landmark.id }
+								} else {
+									collection.landmarks.append(landmark)
+								}
 							} label: {
 								HStack {
 									Text(landmark.name)
