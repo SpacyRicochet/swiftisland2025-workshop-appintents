@@ -11,16 +11,22 @@ struct LandmarkDetailView: View {
 	
 	var body: some View {
 		List {
-			Section("Visits") {
-				if let lastVisited = landmark.lastVisited {
-					VStack(spacing: 4) {
-						Text("Last visited: \(lastVisited.formatted(date: .abbreviated, time: .omitted))")
-					}
+			Section {
+				ForEach(landmark.visits) { visit in
+					Text(visit.timestamp.formatted(date: .abbreviated, time: .omitted))
+						.swipeActions {
+							Button("Remove", role: .destructive) {
+								landmark.visits.removeAll { $0.id == visit.id }
+							}
+						}
 				}
-				Button {
-					landmark.visits.append(Visit(timestamp: Date(), landmark: landmark))
-				} label: {
-					Text("Add a visit")
+			} header: {
+				HStack {
+					Text("Visits")
+						.frame(maxWidth: .infinity, alignment: .leading)
+					Button("Add a visit", systemImage: "plus") {
+						landmark.visits.append(Visit(timestamp: Date()))
+					}
 				}
 			}
 			
