@@ -34,7 +34,7 @@ struct MainOverview: View {
 				NavigationLink {
 					FavoritesView()
 				} label: {
-					Label("Favorites", systemImage: "heart.fill")
+					Label("Favorites", systemImage: "star.fill")
 				}
 			}
 			

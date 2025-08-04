@@ -51,18 +51,22 @@ struct LandmarkDetailView: View {
 		}
 		.navigationTitle(landmark.name)
 		.toolbar {
-			ToolbarItem(placement: .secondaryAction) {
-				Button(
-					landmark.isFavorite ? "Remove from favorites" : "Add to favorites",
-					systemImage: landmark.isFavorite ? "heart.slash" : "heart") {
-						landmark.isFavorite.toggle()
-					}
-					.tint(.red)
-			}
 			ToolbarItem(placement: .topBarTrailing) {
 				Button("Edit") {
 					isEditLandmarkShowing.toggle()
 				}
+			}
+			ToolbarItem(placement: .topBarTrailing) {
+				Button {
+					landmark.isFavorite.toggle()
+				} label: {
+					Label(
+						landmark.isFavorite ? "Remove from favorites" : "Add to favorites",
+						systemImage: landmark.isFavorite ? "star.fill" : "star"
+					)
+						.labelStyle(.iconOnly)
+				}
+				.tint(.yellow)
 			}
 		}
 		.sheet(isPresented: $isEditLandmarkShowing) {

@@ -17,13 +17,13 @@ struct FavoritesView: View {
 					Text(landmark.name)
 				}
 				.swipeActions(edge: .trailing) {
-					Button("Remove from favorites", systemImage: "heart.slash") {
+					Button("Remove from favorites", systemImage: "star.slash") {
 						landmark.isFavorite = false
 					}
-					.tint(.red)
+					.tint(.yellow)
 				}
 			}
 		}
-		.navigationTitle("❤️ Favorites")
+		.navigationTitle("⭐️ Favorites")
 	}
 }
