@@ -2,13 +2,15 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
+	@State var navigationContext = NavigationContext()
+	
 	var body: some View {
 		NavigationSplitView {
-			MainOverview()
+			MainOverview(navigationContext: $navigationContext)
+		} content: {
+			LandmarkCollectionDetailView(navigationContext: $navigationContext)
 		} detail: {
-			NavigationStack {
-				Text("Select an item")
-			}
+			LandmarkDetailView(navigationContext: $navigationContext)
 		}
 	}
 }

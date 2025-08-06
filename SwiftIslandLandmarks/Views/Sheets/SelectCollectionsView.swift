@@ -5,7 +5,7 @@ struct SelectCollectionsView: View {
 	@Environment(\.dismiss) private var dismiss
 	@Environment(\.modelContext) private var modelContext
 	
-	@Query private var collections: [LandmarkCollection]
+	@Query(sort: \LandmarkCollection.name) private var collections: [LandmarkCollection]
 	
 	let landmark: Landmark
 	
