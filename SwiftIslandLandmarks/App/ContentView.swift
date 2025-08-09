@@ -2,7 +2,11 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
-	@State var navigationContext = NavigationContext()
+	@State var navigationContext: NavigationContext
+	
+	init(navigationContext: NavigationContext) {
+		self.navigationContext = navigationContext
+	}
 	
 	var body: some View {
 		NavigationSplitView {
@@ -16,6 +20,6 @@ struct ContentView: View {
 }
 
 #Preview {
-	ContentView()
+	ContentView(navigationContext: NavigationContext())
 		.modelContainer(try! ModelContainer.sample())
 }
