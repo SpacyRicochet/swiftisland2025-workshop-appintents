@@ -23,6 +23,8 @@ struct SwiftIslandLandmarksApp: App {
 			AppDependencyManager.shared.add(dependency: modelContainer)
 			AppDependencyManager.shared.add(dependency: navigationContext)
 			
+			ShortscutsProvider.updateAppShortcutParameters()
+			
 		} catch {
 			fatalError("Could not create ModelContainer: \(error)")
 		}
