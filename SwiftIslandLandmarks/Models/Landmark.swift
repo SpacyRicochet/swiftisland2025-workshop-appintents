@@ -4,6 +4,8 @@ import SwiftData
 @Model
 final class Landmark {
 	@Attribute(.unique)
+	var modelID: UUID
+	@Attribute(.unique)
 	var name: String
 	var latitude: Double
 	var longitude: Double
@@ -24,6 +26,7 @@ final class Landmark {
 		collections: [LandmarkCollection] = [],
 		visits: [Visit] = []
 	) {
+		self.modelID = UUID()
 		self.name = name
 		self.latitude = latitude
 		self.longitude = longitude
