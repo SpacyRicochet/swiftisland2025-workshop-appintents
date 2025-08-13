@@ -2,6 +2,7 @@ import Foundation
 import SwiftData
 
 extension ModelContainer {
+	@MainActor
 	static func shared() throws -> ModelContainer {
 		let schema = Schema.allEntities
 		let modelConfiguration = ModelConfiguration(isStoredInMemoryOnly: false)
@@ -11,6 +12,7 @@ extension ModelContainer {
 	}
 	
 	// Insert sample data on first launch.
+	@MainActor
 	func insertSampleDataIfNeeded() throws {
 		// If there's no app data yet, this is a first launch.
 		// We'll populate some initial landmarks.

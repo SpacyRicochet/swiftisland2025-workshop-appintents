@@ -1,6 +1,7 @@
 import SwiftData
 
 extension ModelContainer {
+	@MainActor
 	static func sample() throws -> ModelContainer {
 		let schema = Schema.allEntities
 		let modelConfiguration = ModelConfiguration(isStoredInMemoryOnly: true)
