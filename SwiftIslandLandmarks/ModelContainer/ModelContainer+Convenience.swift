@@ -2,15 +2,18 @@ import Foundation
 import SwiftData
 
 extension ModelContainer {
-	@MainActor
-	func landmark(for id: Landmark.ID) throws -> Landmark {
-		guard let result = mainContext.model(for: id) as? Landmark else {
-			throw DatabaseError.couldNotFindLandmarkWithID(id)
-		}
-		return result
-	}
-}
 
-enum DatabaseError: Error {
-	case couldNotFindLandmarkWithID(Landmark.ID)
+	@MainActor
+	func landmarks() throws -> [Landmark] {
+		return try mainContext.fetch(FetchDescriptor<Landmark>())
+	}
+	
+	@MainActor
+	func landmarks(for modelIDs: [UUID]) throws -> [Landmark] {
+		let ids = modelIDs
+		let fetchDescriptor = FetchDescriptor<Landmark>(
+			predicate: #Predicate<Landmark> { ids.contains($0.modelID) }
+		)
+		return try mainContext.fetch(fetchDescriptor)
+	}
 }

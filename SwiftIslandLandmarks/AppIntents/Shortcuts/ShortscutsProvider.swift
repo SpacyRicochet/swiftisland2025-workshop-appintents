@@ -28,5 +28,16 @@ final class ShortscutsProvider: AppShortcutsProvider {
 			// 4d. And give it a proper SF symbol.
 			systemImageName: "star.fill"
 		)
+		
+		// Let's add our other shortcuts here as well.
+		AppShortcut(
+			intent: ClosestLandmarkIntent(),
+			phrases: [
+				"Find closest landmark in \(.applicationName)",
+				"What is the nearest landmark in \(.applicationName)"
+			],
+			shortTitle: "Closest landmark",
+			systemImageName: "mappin.and.ellipse"
+		)
 	}
 }
