@@ -18,8 +18,10 @@ struct ClosestLandmarkIntent: AppIntent {
 	//    in the return type.
 	// 4. Now, we want to show a nice view for the Landmark as well. Add that
 	//    to the return type.
+	// --
+	// 6. Changes here. We now show an intent instead of a view.
 	@MainActor
-	func perform() async throws -> some IntentResult & ReturnsValue<LandmarkEntity> & ProvidesDialog & ShowsSnippetView {
+	func perform() async throws -> some IntentResult & ReturnsValue<LandmarkEntity> & ProvidesDialog & ShowsSnippetIntent {
 		// 3a. We try to find the closest landmark. For now, we hardcode this to Prins Hendrik.
 		let landmarks = try modelContainer.landmarks()
 		let closestLandmark = landmarks.first { $0.name.contains("Prins Hendrik") }
@@ -34,7 +36,9 @@ struct ClosestLandmarkIntent: AppIntent {
 			value: entity,
 			dialog: IntentDialog("The closest landmark is '\(result.name)'"),
 			// 5. And we add a new snippet view!
-			view: LandmarkSnippetView(landmark: entity)
+			// --
+			// 7. Changes here. We show an intent, not a view.
+			snippetIntent: LandmarkSnippetIntent(landmark: entity)
 		)
 	}
 }

@@ -1,4 +1,5 @@
 import SwiftUI
+import AppIntents
 
 struct LandmarkSnippetView: View {
 	let landmark: LandmarkEntity
@@ -10,8 +11,14 @@ struct LandmarkSnippetView: View {
 				Text(landmark.name)
 					.font(.headline)
 					.frame(maxWidth: .infinity, alignment: .leading)
-				Image(systemName: landmark.isFavorite ? "star.fill" : "star")
+				Button(
+					intent: UpdateLandmarkFavoriteIntent(landmark: landmark)
+				) {
+					Image(systemName: landmark.isFavorite ? "star.fill" : "star")
+						.contentTransition(.symbolEffect(.replace.magic(fallback: .replace)))
+				}
 			}
+			.font(.headline)
 		}
 	}
 }

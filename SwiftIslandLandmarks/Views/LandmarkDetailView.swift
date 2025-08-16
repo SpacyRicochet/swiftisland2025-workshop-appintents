@@ -1,3 +1,4 @@
+import AppIntents
 import SwiftUI
 import SwiftData
 
@@ -49,9 +50,8 @@ struct LandmarkDetailView: View {
 						}
 					}
 					ToolbarItem(placement: .topBarTrailing) {
-						Button {
-							landmark.isFavorite.toggle()
-						} label: {
+						// We can even replace our original action with the intent instead!
+						Button(intent: UpdateLandmarkFavoriteIntent(landmark: LandmarkEntity(landmark: landmark))) {
 							Label(
 								landmark.isFavorite ? "Remove from favorites" : "Add to favorites",
 								systemImage: landmark.isFavorite ? "star.fill" : "star"
