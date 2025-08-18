@@ -7,7 +7,9 @@ struct LandmarkDetailView: View {
 	
 	@State private var isEditLandmarkShowing = false
 	@State private var isSelectCollectionsShowing = false
-	
+	@State private var isAddVisitShowing = false
+	@State private var isEditVisitShowing: Visit?
+
 	@Binding var navigationContext: NavigationContext
 	
 	var body: some View {
@@ -18,13 +20,13 @@ struct LandmarkDetailView: View {
 						ForEach(landmark.visits) { visit in
 							Text(visit.timestamp.formatted(date: .abbreviated, time: .omitted))
 								.swipeActions {
-									Button("Remove", role: .destructive) {
-										landmark.visits.removeAll { $0.id == visit.id }
+									Button("Edit") {
+										isEditVisitShowing = visit
 									}
 								}
 						}
 						Button("Add a visit", systemImage: "plus") {
-							landmark.visits.append(Visit(timestamp: Date()))
+							isAddVisitShowing.toggle()
 						}
 					}
 					
@@ -67,6 +69,20 @@ struct LandmarkDetailView: View {
 						deleteHandler: {
 							dismiss()
 						}
+					)
+				}
+				.sheet(item: $isEditVisitShowing) { visit in
+					EditVisitForm(
+						landmark: landmark,
+						visit: visit,
+						deleteHandler: {}
+					)
+				}
+				.sheet(isPresented: $isAddVisitShowing) {
+					EditVisitForm(
+						landmark: landmark,
+						visit: nil,
+						deleteHandler: {}
 					)
 				}
 				.sheet(isPresented: $isSelectCollectionsShowing) {
