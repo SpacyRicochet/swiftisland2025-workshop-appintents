@@ -8,6 +8,7 @@ import SwiftData
 struct LandmarkEntity: AppEntity {
 	
 	let modelID: UUID
+	let modelContainer: ModelContainer
 	
 	// You use `@Property` for the properties that the App Intents will interact with.
 	// The property's title is derived from the property name.
@@ -18,8 +19,9 @@ struct LandmarkEntity: AppEntity {
 	@Property(title: "Favorite")
 	var isFavorite: Bool
 
-	init(landmark: Landmark) {
+	init(landmark: Landmark, modelContainer: ModelContainer) {
 		self.modelID = landmark.modelID
+		self.modelContainer = modelContainer
 		self.name = landmark.name
 		self.isFavorite = landmark.isFavorite
 	}
@@ -54,6 +56,25 @@ struct LandmarkEntityQuery: EntityQuery {
 	
 	@MainActor
 	func entities(for identifiers: [UUID]) async throws -> [LandmarkEntity] {
-		return try modelContainer.landmarks(for: identifiers).map(LandmarkEntity.init)
+		return try modelContainer.landmarks(for: identifiers).map {
+			LandmarkEntity(landmark: $0, modelContainer: modelContainer)
+		}
 	}
+}
+
+extension LandmarkEntity {
+	
+	@MainActor
+	var fetchedValue: Landmark {
+		get throws {
+			guard let result = try modelContainer.landmarks(for: [modelID]).first else {
+				throw LandmarkEntityError.couldNotLoadLandmark
+			}
+			return result
+		}
+	}
+}
+
+enum LandmarkEntityError: Error {
+	case couldNotLoadLandmark
 }

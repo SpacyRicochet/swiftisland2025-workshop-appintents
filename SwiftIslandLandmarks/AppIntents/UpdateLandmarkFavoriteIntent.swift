@@ -16,12 +16,10 @@ struct UpdateLandmarkFavoriteIntent: AppIntent {
 	// 3. In this perform function, we need to return the _updated_ landmark.
 	@MainActor
 	func perform() async throws -> some IntentResult & ReturnsValue<LandmarkEntity> {
-		guard let fetchedLandmark = try modelContainer.landmarks(for: [landmark.modelID]).first else {
-			throw UpdateLandmarkFavoriteIntentError.unableToLocateLandmark
-		}
+		let fetchedLandmark = try landmark.fetchedValue
 		// 4. We toggle the favorite status on the landmark and create an updated entity to pass back.
 		fetchedLandmark.isFavorite.toggle()
-		let result = LandmarkEntity(landmark: fetchedLandmark)
+		let result = LandmarkEntity(landmark: fetchedLandmark, modelContainer: modelContainer)
 		
 		// 5. Now, we only need to return newly updated landmark and the snippet will pick that up.
 		return .result(
@@ -36,8 +34,4 @@ extension UpdateLandmarkFavoriteIntent {
 	init(landmark: LandmarkEntity) {
 		self.landmark = landmark
 	}
-}
-
-enum UpdateLandmarkFavoriteIntentError: Error {
-	case unableToLocateLandmark
 }

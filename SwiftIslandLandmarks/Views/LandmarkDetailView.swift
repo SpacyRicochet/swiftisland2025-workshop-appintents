@@ -4,6 +4,7 @@ import SwiftData
 
 struct LandmarkDetailView: View {
 	@Environment(\.dismiss) var dismiss
+	@Environment(\.modelContext) var modelContext
 	
 	@State private var isEditLandmarkShowing = false
 	@State private var isSelectCollectionsShowing = false
@@ -18,12 +19,16 @@ struct LandmarkDetailView: View {
 				List {
 					Section("Visits") {
 						ForEach(landmark.visits) { visit in
-							Text(visit.timestamp.formatted(date: .abbreviated, time: .omitted))
-								.swipeActions {
-									Button("Edit") {
-										isEditVisitShowing = visit
-									}
+							VStack {
+								Text(visit.timestamp.formatted(date: .abbreviated, time: .omitted))
+									.font(.caption)
+								Text(visit.log)
+							}
+							.swipeActions {
+								Button("Edit") {
+									isEditVisitShowing = visit
 								}
+							}
 						}
 						Button("Add a visit", systemImage: "plus") {
 							isAddVisitShowing.toggle()
@@ -53,7 +58,7 @@ struct LandmarkDetailView: View {
 					}
 					ToolbarItem(placement: .topBarTrailing) {
 						// We can even replace our original action with the intent instead!
-						Button(intent: UpdateLandmarkFavoriteIntent(landmark: LandmarkEntity(landmark: landmark))) {
+						Button(intent: UpdateLandmarkFavoriteIntent(landmark: LandmarkEntity(landmark: landmark, modelContainer: modelContext.container))) {
 							Label(
 								landmark.isFavorite ? "Remove from favorites" : "Add to favorites",
 								systemImage: landmark.isFavorite ? "star.fill" : "star"

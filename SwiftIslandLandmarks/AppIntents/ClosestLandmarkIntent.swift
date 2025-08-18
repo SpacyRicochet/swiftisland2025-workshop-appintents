@@ -30,7 +30,7 @@ struct ClosestLandmarkIntent: AppIntent {
 		}
 		// 3b. Now, we need to convert the landmark to a proper IntentValue.
 		//     We do this by creating an AppEntity called `LandmarkEntity`.
-		let entity = LandmarkEntity(landmark: result)
+		let entity = LandmarkEntity(landmark: result, modelContainer: modelContainer)
 		
 		return .result(
 			value: entity,
