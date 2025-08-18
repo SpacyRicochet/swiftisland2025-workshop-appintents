@@ -69,6 +69,7 @@ struct EditVisitForm: View {
 			}
 			Section(header: Text("Log")) {
 				TextEditor(text: $log)
+					.frame(minHeight: 142)
 			}
 		}
 	}
