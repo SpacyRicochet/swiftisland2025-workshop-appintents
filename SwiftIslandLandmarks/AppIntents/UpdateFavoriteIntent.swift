@@ -2,7 +2,7 @@ import AppIntents
 import SwiftData
 
 // We have to create an intent, for the sole purpose of updating the favorite status on a landmark.
-struct UpdateLandmarkFavoriteIntent: AppIntent {
+struct UpdateFavoriteIntent: AppIntent {
 	// 1. Title and description again.
 	static let title: LocalizedStringResource = "Update Landmark Favorite"
 	static let description = IntentDescription("Set or remove the favorite status from a landmark.")
@@ -28,7 +28,7 @@ struct UpdateLandmarkFavoriteIntent: AppIntent {
 	}
 }
 
-extension UpdateLandmarkFavoriteIntent {
+extension UpdateFavoriteIntent {
 	// 6. We need to declare another initializer in an extension, because the `init()` is
 	//    required. But we also need a parametrized version for our snippet to call.
 	init(landmark: LandmarkEntity) {

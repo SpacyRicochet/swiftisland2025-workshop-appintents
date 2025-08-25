@@ -31,7 +31,7 @@ struct LandmarkSnippetView: View {
 								.frame(maxWidth: .infinity, alignment: .leading)
 						}
 						Button(
-							intent: UpdateLandmarkFavoriteIntent(landmark: landmark)
+							intent: UpdateFavoriteIntent(landmark: landmark)
 						) {
 							Image(systemName: landmark.isFavorite ? "star.fill" : "star")
 								.contentTransition(.symbolEffect(.replace.magic(fallback: .replace)))

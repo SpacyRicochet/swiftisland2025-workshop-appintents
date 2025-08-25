@@ -58,7 +58,7 @@ struct LandmarkDetailView: View {
 					}
 					ToolbarItem(placement: .topBarTrailing) {
 						// We can even replace our original action with the intent instead!
-						Button(intent: UpdateLandmarkFavoriteIntent(landmark: LandmarkEntity(landmark: landmark, modelContainer: modelContext.container))) {
+						Button(intent: UpdateFavoriteIntent(landmark: LandmarkEntity(landmark: landmark, modelContainer: modelContext.container))) {
 							Label(
 								landmark.isFavorite ? "Remove from favorites" : "Add to favorites",
 								systemImage: landmark.isFavorite ? "star.fill" : "star"
