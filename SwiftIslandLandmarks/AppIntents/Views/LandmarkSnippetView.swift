@@ -6,37 +6,41 @@ struct LandmarkSnippetView: View {
 	
 	var body: some View {
 		ZStack {
-			Color.yellow
-			VStack {
-				HStack {
-					Text(landmark.name)
-						.font(.headline)
-						.frame(maxWidth: .infinity, alignment: .leading)
-					Button(
-						intent: UpdateLandmarkFavoriteIntent(landmark: landmark)
-					) {
-						Image(systemName: landmark.isFavorite ? "star.fill" : "star")
-							.contentTransition(.symbolEffect(.replace.magic(fallback: .replace)))
-					}
-				}
-				.font(.title)
-				if !fetchedLandmark.visits.isEmpty {
-					Text("Visits")
-						.frame(maxWidth: .infinity, alignment: .leading)
-						.font(.headline)
-					Divider()
-					ForEach(fetchedLandmark.visits) { visit in
-						VStack(alignment: .leading) {
-							Text(visit.timestamp.formatted(date: .abbreviated, time: .shortened))
+			LinearGradient(colors: [.yellow, .red], startPoint: .top, endPoint: .bottomTrailing)
+				.opacity(0.3)
+				.clipShape(.containerRelative)
+			VStack(alignment: .leading) {
+				Text(landmark.name)
+					.font(.headline)
+					.fontDesign(.rounded)
+					.frame(maxWidth: .infinity, alignment: .leading)
+				
+				if let visit = fetchedLandmark.visits.sorted(by: { $0.timestamp > $1.timestamp }).first {
+					HStack {
+						VStack(alignment: .leading, spacing: 2) {
+							if !visit.log.isEmpty {
+								if visit.log.count > 50 {
+									Text(visit.log.prefix(50) + "…")
+								} else {
+									Text(visit.log)
+								}
+							}
+							Text("Last visit: \(visit.timestamp.formatted(date: .abbreviated, time: .omitted))")
 								.font(.caption)
-							Text(visit.log.prefix(50) + "…")
+								.fontWeight(.light)
 								.frame(maxWidth: .infinity, alignment: .leading)
 						}
-						.padding()
-						.background(.gray, in: RoundedRectangle(cornerRadius: 2, style: .continuous))
+						Button(
+							intent: UpdateLandmarkFavoriteIntent(landmark: landmark)
+						) {
+							Image(systemName: landmark.isFavorite ? "star.fill" : "star")
+								.contentTransition(.symbolEffect(.replace.magic(fallback: .replace)))
+						}
+						.tint(.red)
 					}
 				}
 			}
+			.padding()
 		}
 	}
 	
