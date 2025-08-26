@@ -19,11 +19,9 @@ struct LandmarkSnippetView: View {
 					HStack {
 						VStack(alignment: .leading, spacing: 2) {
 							if !visit.log.isEmpty {
-								if visit.log.count > 50 {
-									Text(visit.log.prefix(50) + "…")
-								} else {
-									Text(visit.log)
-								}
+								Text(visit.log)
+									.lineLimit(3)
+									.multilineTextAlignment(.leading)
 							}
 							Text("Last visit: \(visit.timestamp.formatted(date: .abbreviated, time: .omitted))")
 								.font(.caption)

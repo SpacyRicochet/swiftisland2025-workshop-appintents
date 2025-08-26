@@ -19,10 +19,11 @@ struct LandmarkDetailView: View {
 				List {
 					Section("Visits") {
 						ForEach(landmark.visits) { visit in
-							VStack {
+							VStack(alignment: .leading) {
 								Text(visit.timestamp.formatted(date: .abbreviated, time: .omitted))
 									.font(.caption)
 								Text(visit.log)
+									.frame(maxWidth: .infinity, alignment: .leading)
 							}
 							.swipeActions {
 								Button("Edit") {
