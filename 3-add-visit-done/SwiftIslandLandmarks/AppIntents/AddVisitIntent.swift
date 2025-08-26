@@ -39,7 +39,7 @@ struct AddVisitIntent: AppIntent {
 		// 3b. Now, we want to add a visit, but only if the user is truly ready for it!
 		try await requestConfirmation(
 			actionName: .add,
-			snippetIntent: AddVisitSnippetIntent(visit: visitEntity, landmark: landmark)
+			snippetIntent: VisitSnippetIntent(visit: visitEntity, landmark: landmark)
 		)
 		
 		// 3c. Now that we've receive confirmation and we have an updated,

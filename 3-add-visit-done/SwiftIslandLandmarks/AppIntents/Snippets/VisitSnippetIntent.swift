@@ -3,7 +3,7 @@ import SwiftData
 import SwiftUI
 
 // In this intent we prepare the confirmation screen for adding a visit.
-struct AddVisitSnippetIntent: SnippetIntent {
+struct VisitSnippetIntent: SnippetIntent {
 	
 	// 1. Add the title.
 	static let title: LocalizedStringResource = "Add visit Snippet"
@@ -22,7 +22,7 @@ struct AddVisitSnippetIntent: SnippetIntent {
 	}
 }
 
-extension AddVisitSnippetIntent {
+extension VisitSnippetIntent {
 	init(visit: VisitEntity, landmark: LandmarkEntity) {
 		self.visit = visit
 		self.landmark = landmark
