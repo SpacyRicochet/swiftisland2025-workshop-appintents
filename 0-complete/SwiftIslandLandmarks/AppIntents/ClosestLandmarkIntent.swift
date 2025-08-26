@@ -30,15 +30,15 @@ struct ClosestLandmarkIntent: AppIntent {
 		}
 		// 3b. Now, we need to convert the landmark to a proper IntentValue.
 		//     We do this by creating an AppEntity called `LandmarkEntity`.
-		let entity = LandmarkEntity(landmark: result, modelContainer: modelContainer)
+		let landmark = LandmarkEntity(landmark: result, modelContainer: modelContainer)
 		
 		return .result(
-			value: entity,
+			value: landmark,
 			dialog: IntentDialog("The closest landmark is '\(result.name)'"),
 			// 5. And we add a new snippet view!
 			// --
 			// 7. Changes here. We show an intent, not a view.
-			snippetIntent: LandmarkSnippetIntent(landmark: entity)
+			snippetIntent: LandmarkSnippetIntent(landmark: landmark)
 		)
 	}
 }
