@@ -39,6 +39,10 @@ struct LandmarkSnippetView: View {
 						.tint(.red)
 					}
 				}
+				// We need to add a button that will trigger our intent.
+				Button(intent: AddVisitIntent(landmark: landmark)) {
+					Text("\(Image(systemName: "pin.circle.fill")) Add visit")
+				}
 			}
 			.padding()
 		}
