@@ -15,9 +15,9 @@ struct LandmarkSnippetView: View {
 					.fontDesign(.rounded)
 					.frame(maxWidth: .infinity, alignment: .leading)				
 				Image(systemName: landmark.isFavorite ? "star.fill" : "star")
+					.tint(.red)
 			}
-			.tint(.red)
+			.padding()
 		}
-		.padding()
 	}
 }

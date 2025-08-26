@@ -8,7 +8,6 @@ import SwiftData
 struct LandmarkEntity: AppEntity {
 	
 	let modelID: UUID
-	let modelContainer: ModelContainer
 	
 	// You use `@Property` for the properties that the App Intents will interact with.
 	// The property's title is derived from the property name.
