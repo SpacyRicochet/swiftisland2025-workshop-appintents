@@ -1,0 +1,18 @@
+import Foundation
+import SwiftData
+
+@Model
+final class LandmarkCollection {
+	@Attribute(.unique)
+	var modelID: UUID
+	@Attribute(.unique)
+	var name: String
+	@Relationship(deleteRule: .nullify, inverse: \Landmark.collections)
+	var landmarks: [Landmark]
+	
+	init(name: String, landmarks: [Landmark]) {
+		self.modelID = UUID()
+		self.name = name
+		self.landmarks = landmarks
+	}
+}
