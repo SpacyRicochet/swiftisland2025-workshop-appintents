@@ -7,10 +7,11 @@ import SwiftData
 struct VisitEntity: AppEntity {
 	
 	// 1. We'll perform the `modelID` trick to appease SwiftData again,
-	//    and make sure we can fetch it throug the model container.
+	//    and make sure we can fetch it through the model container.
 	let modelID: UUID
 	let modelContainer: ModelContainer
-	
+	var id: UUID { modelID }
+
 	// 2. We'll create `@Parameter` properties to be able to populate
 	//    our view.
 	@Property
@@ -25,25 +26,19 @@ struct VisitEntity: AppEntity {
 		self.log = visit.log
 	}
 	
-	// 3. We'll add the required display string for the entity.
+	// 3. We'll add the required display string for the entity,
+	//    the entity's type representation and the default query.
 	var displayRepresentation: DisplayRepresentation {
 		DisplayRepresentation(title: "Your visit at \(timestamp.formatted(date: .abbreviated, time: .omitted))")
 	}
-	
-	// 4. And the entity's type name.
 	static var typeDisplayRepresentation: TypeDisplayRepresentation {
 		TypeDisplayRepresentation(name: "Visit")
 	}
-	
-	// 1a. We'll adopt this for as the identifier.
-	var id: UUID { modelID }
-	
-	// 5. And we create another query, so the system can fetch all
-	//    the visits when necessary.
 	static let defaultQuery = VisitEntityQuery()
 }
 
-// 5a. Just like before, we'll make a small query to satisfy App Intents.
+// Just like before, we'll make a small query to satisfy App Intents.
+// Don't touch this.
 struct VisitEntityQuery: EntityQuery {
 	@Dependency
 	var modelContainer: ModelContainer
@@ -56,6 +51,8 @@ struct VisitEntityQuery: EntityQuery {
 	}
 }
 
+// This is a nice convenience method for VisitEntity to just fetch
+// its backing value quickly.
 extension VisitEntity {
 	
 	@MainActor
