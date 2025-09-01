@@ -1,6 +1,7 @@
 import SwiftUI
 import AppIntents
 
+// We need to add a button that calls an intent.
 struct LandmarkSnippetView: View {
 	let landmark: LandmarkEntity
 	
@@ -14,6 +15,7 @@ struct LandmarkSnippetView: View {
 					.font(.headline)
 					.fontDesign(.rounded)
 					.frame(maxWidth: .infinity, alignment: .leading)
+				// 1. We add a button that calls an intent instead of an action.
 				Button(
 					intent: UpdateFavoriteIntent(landmark: landmark)
 				) {

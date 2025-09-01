@@ -1,6 +1,7 @@
 import SwiftUI
 import AppIntents
 
+// We need to add a button that calls an intent.
 struct LandmarkSnippetView: View {
 	let landmark: LandmarkEntity
 	

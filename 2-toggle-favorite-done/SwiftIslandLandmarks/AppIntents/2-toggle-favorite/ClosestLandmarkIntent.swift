@@ -2,7 +2,7 @@ import AppIntents
 import SwiftData
 import SwiftUI
 
-// Okay, let's set up a more complicated intent.
+// Change the returned result in the perform to include a snippet view.
 struct ClosestLandmarkIntent: AppIntent {
 	
 	// 1. We'll be grabbing stuff from the database.

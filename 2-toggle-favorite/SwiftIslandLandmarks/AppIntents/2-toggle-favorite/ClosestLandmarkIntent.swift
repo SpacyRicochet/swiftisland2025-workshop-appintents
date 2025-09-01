@@ -2,7 +2,7 @@ import AppIntents
 import SwiftData
 import SwiftUI
 
-// Change the returned result to include a snippet view.
+// Change the returned result in the perform to include a snippet view.
 struct ClosestLandmarkIntent: AppIntent {
 	
 	@Dependency
@@ -12,7 +12,7 @@ struct ClosestLandmarkIntent: AppIntent {
 	static let description = IntentDescription("Find the closest landmark to you.")
 	
 	@MainActor
-	func perform() async throws -> some IntentResult & ReturnsValue<LandmarkEntity> & ProvidesDialog {
+	func perform() async throws -> some IntentResult & ReturnsValue<LandmarkEntity> & ProvidesDialog & ShowsSnippetView {
 		let landmarks = try modelContainer.landmarks()
 		let closestLandmark = landmarks.first { $0.name.contains("Prins Hendrik") }
 		guard let result = closestLandmark else {
@@ -22,7 +22,8 @@ struct ClosestLandmarkIntent: AppIntent {
 		
 		return .result(
 			value: landmark,
-			dialog: IntentDialog("The closest landmark is '\(result.name)'")
+			dialog: IntentDialog("The closest landmark is '\(result.name)'"),
+			view: LandmarkSnippetView(landmark: landmark)
 		)
 	}
 }

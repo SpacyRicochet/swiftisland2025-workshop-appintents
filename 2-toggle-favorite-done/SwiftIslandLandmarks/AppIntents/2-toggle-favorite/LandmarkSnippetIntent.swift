@@ -23,8 +23,8 @@ struct LandmarkSnippetIntent: SnippetIntent {
 	}
 }
 
-// 2a. Because an AppIntent needs to have a parameterless initializer,
-//     we need to create a convenience initializer in an extension.
+// 4. We need to declare another initializer in an extension, because the `init()` is
+//    required. But we also need a parametrized version for our snippet to call.
 extension LandmarkSnippetIntent {
 	init(landmark: LandmarkEntity) {
 		self.landmark = landmark
