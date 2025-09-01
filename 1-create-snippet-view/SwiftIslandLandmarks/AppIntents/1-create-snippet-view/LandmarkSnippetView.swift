@@ -1,9 +1,9 @@
 import SwiftUI
 import AppIntents
 
+// We need to add the landmark here somehow
+// and make sure it can be passed in future intents.
 struct LandmarkSnippetView: View {
-	// We need to add the landmark here somehow
-	// and make sure it can be passed in future intents.
 	
 	var body: some View {
 		ZStack {
@@ -23,6 +23,7 @@ struct LandmarkSnippetView: View {
 	}
 }
 
+// Delete this stuff after.
 private struct DeleteAfter {
 	static let name = "Prins Hendrik"
 	static let isFavorite = false
