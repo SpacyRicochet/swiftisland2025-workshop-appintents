@@ -9,9 +9,9 @@ struct VisitEntity: AppEntity {
 	//    and make sure we can fetch it through the model container.
 
 	
-	// 2. We'll create `@Parameter` properties to be able to populate
+	// 2. We'll create our `@Property` values to be able to populate
 	//    our view.
-	
+
 	
 	// 3. We'll add the required display string for the entity and
 	//    the entity's type representation and the default query.

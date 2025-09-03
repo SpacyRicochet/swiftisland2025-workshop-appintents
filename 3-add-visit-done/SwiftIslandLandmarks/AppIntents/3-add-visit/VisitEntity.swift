@@ -12,7 +12,7 @@ struct VisitEntity: AppEntity {
 	let modelContainer: ModelContainer
 	var id: UUID { modelID }
 
-	// 2. We'll create `@Parameter` properties to be able to populate
+	// 2. We'll create our `@Property` values to be able to populate
 	//    our view.
 	@Property
 	var timestamp: Date
